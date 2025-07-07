@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+/* Tag	Use Instead of <div> When...	Example Use
+<header>	Wrapping top navigation or site heading	Page or section top area
+<nav>	Wrapping navigation links	Menus, sidebar links
+<main>	For the main content area (only one per page)	Everything but nav/header/footer
+<section>	Group related content with a heading	About section, Features, etc.
+<article>	Independent, reusable content (e.g., blog post)	Blog post, news card
+<aside>	For side content (ads, sidebars, tips, etc.)	Sidebar, help panel
+<footer>	Bottom of page or component	Page footer, section footer
+<form>	Wrapping input elements	User input, login forms
+<fieldset>	Grouping form inputs together	Grouping name, email, etc.
+<label>	Labeling form inputs	<label for="email">Email</label>
+<ul> / <ol>	For lists (navigation, items)	Menu, checklist
+<table>	Tabular data	Pricing table, schedules */
