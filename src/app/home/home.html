@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+<div class="ml-[2.4rem] mr-[2.4rem]  h-[30rem]" *ngIf="shows.length>0">
+    <h1 class="text-2xl font-bold pb-[0.5rem]">Recommended Movies</h1>
+    <div class="flex flex-wrap  gap-[2rem]">
+        <div class=" w-[13rem] h-auto  break-words flex flex-col " *ngFor="let show of shows">
+            <img src={{show.movie.poster}} alt="jiokl" class="h-[22rem] w-full bg-yellow-500 rounded-xl" />
+
+            <p class="font-bold text-2xl">{{show.movie.title}}</p>
+            <span>
+                <ng-container *ngFor="let genre of show.movie.moviegenre;let i=index">
+                    {{genre.genre}}<span *ngIf="i<show.movie.moviegenre.length-1">,</span>
+                </ng-container>
+            </span>
+
+        </div>
+
+    </div>
+</div>

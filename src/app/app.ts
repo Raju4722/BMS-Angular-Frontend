@@ -1,15 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
-import { Navbar } from './Navbar/navbar';
+
+import { select, Store } from '@ngrx/store';
+import { LocationState } from './store/location.model';
+import { Observable } from 'rxjs';
+import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Navbar],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
 export class App {
   protected title = 'practice-app';
-  location:string='select location'
+  private store = inject(Store<{ location: LocationState }>);
+  location$: Observable<LocationState> = this.store.pipe(select('location'));
 }

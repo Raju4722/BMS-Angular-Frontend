@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
-
 /* Tag	Use Instead of <div> When...	Example Use
 <header>	Wrapping top navigation or site heading	Page or section top area
 <nav>	Wrapping navigation links	Menus, sidebar links
