@@ -93,6 +93,24 @@
             <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
     </div>
+    <div class="p-[2rem]">
+        <div class="flex gap-[2rem] mb-[2rem]">
+            <p [ngStyle]="Togglemoviestab?boxstyles:null" (click)="Togglemoviestab=true">Movies</p>
+            <p [ngStyle]="!Togglemoviestab?boxstyles:null"  (click)="Togglemoviestab=false">Cinemas</p>
+        </div>
+        <div  *ngIf="Togglemoviestab ; else cinemasTab">
+            <div class='columns-1' *ngFor="let sett of moviestab | keyvalue">
+                <p class="text-red-500 mb-[0.5rem] mt-[0.5rem]">{{sett.key}}</p>
+                <div class="flex flex-col" *ngFor="let movie of sett.value">
+                    <span class="cursor-pointer"> {{movie}}</span>
+                </div>
+            </div>
+        </div>
+        <ng-template class="flex flex-col" #cinemasTab>
+            <div class="cursor-pointer">Theatre</div>
+            <div class="cursor-pointer">Theatre</div>
+        </ng-template>
+    </div>
 </section>
 
 
@@ -199,19 +217,15 @@
                 <h6 class='mt-[1rem]'>Tirupathi</h6>
             </div>
         </div>
-         <div *ngIf="showAllCities">
-<p class="text-center text-red-500 mt-[1rem] font-bold">All cities</p>
-        <div class='flex flex-wrap h-[8rem] overflow-auto custom-scrollbar mt-[1rem] p-[1rem]' >
-
-           
-            <h4 class='w-[10rem] h-[1.5rem]' *ngFor="let location of cities"><h1 (click)="setCity(location.location);ToggleLocation()">{{location.location}}</h1></h4>
-            
-
+        <div *ngIf="showAllCities">
+            <p class="text-center text-red-500 mt-[1rem] font-bold">All cities</p>
+            <div class='flex flex-wrap h-[8rem] overflow-auto custom-scrollbar mt-[1rem] p-[1rem]'>
+                <h4 class='w-[10rem] h-[1.5rem]' *ngFor="let location of cities">
+                    <h1 (click)="setCity(location.location);ToggleLocation();navigatelocation(location.location)">{{location.location}}</h1>
+                </h4>
+            </div>
         </div>
-        </div>
-        <h5 class=' text-center mb-[1rem] mt-[1rem] text-red-500 font-bold' (click)="ToggleAllCities()">{{togglecity}} All Cities</h5>
-        
-       
+        <h5 class=' text-center mb-[1rem] mt-[1rem] text-red-500 font-bold' (click)="ToggleAllCities()">{{togglecity}}
+            All Cities</h5>
     </div>
-
 </section>

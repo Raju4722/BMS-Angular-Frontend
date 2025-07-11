@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+
+<div class="w-full h-[77vh] p-[2rem] pl-[3.2rem] pr-[3.2rem] bg-center md:w-[100vw]"
+    style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVT8nmtxd5xyGRk6_uQObDmOqDSLdhutCJpw&s')" >
+    <div class="w-full h-full flex justify-between">
+        <div class="flex h-full items-center ">
+            <div class=" flex flex-col justify-end h-full w-[21vw] rounded-3xl overflow-hidden mr-[2rem]">
+                <img src={{movie.poster}} alt="jn" class=" w-full h-full bg-yellow-500" />
+                <h3 class=" w-full text-center  bg-black/80 text-white">In Cinemas</h3>
+                <!-- <h3 class=" w-full text-center  bg-black/80 text-white">Releasing Soon</h3> -->
+
+
+            </div>
+            <div class="h-[16rem] w-[50vw] flex flex-col justify-between text-white">
+                <h1 class="text-3xl font-bold ">{{movie.title}}</h1>
+
+                <div class="  w-[27rem] h-[4rem] bg-black/60 flex text-xl items-center p-[1rem] rounded-md">
+                    <i class="ri-heart-line mr-[0.5rem]"></i>
+                    {{movie.rating}}/10
+                    <h1 class="ml-[1rem] text-xl w-[12.4rem]">({{movie.votes}} Votes)</h1>
+                    <button type="primary" class=" p-[0.4rem] rounded-md bg-red-500 hover:cursor-not-allowed">Rate
+                        Now</button>
+                </div>
+                <div class="flex">
+                    <div class="bg-white text-black w-auto p-[0.3rem] mr-[1rem] rounded-md" >
+                        <span class='cursor-pointer hover:underline' *ngFor="let lang of movie.movielang;let i=index">{{lang.language}} <span *ngIf="i<movie.movielang.length-1">,</span></span>
+                    </div>
+                    <div class="bg-white text-black w-auto p-[0.3rem] mr-[0.5rem] rounded-md">
+                        <span class='cursor-pointer hover:underline' *ngFor="let type of movie.movietype;let i=index">{{type.type}} <span *ngIf="i<movie.movietype.length-1">,</span></span>
+                    </div>
+                </div>
+                <div class="flex text-white">
+                    <span>{{movie.duration}} min</span>
+                    <ul class="list-disc list-inside flex ml-[2rem]">
+                        <li>
+                            <span class="indent-[+2.5rem] cursor-poiniter hover:underline" *ngFor="let genre of movie.moviegenre;let i=index">{{genre.genre}}<span *ngIf="i<movie.moviegenre.length-1">,</span></span>
+
+                        </li>
+                        <li class="ml-[1rem]">{{movie.censor}}</li>
+                        <li class="ml-[1rem]">{{movie.releasedate}}</li>
+                    </ul>
+                </div>
+                <button class="bg-yellow-500 rounded-md h-[2rem] w-[13rem]">Book Tickets</button>
+
+            </div>
+
+        </div>
+        <button type="text"
+            class="bg-black text-white text-xl h-[3rem] w-[7rem] rounded-md hover:cursor-not-allowed">Share <i
+                class="ri-share-2-line"></i></button>
+    </div>
+
+</div>

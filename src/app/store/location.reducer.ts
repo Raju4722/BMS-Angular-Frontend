@@ -3,7 +3,7 @@ import { LocationState } from "./location.model";
 import { setLocation } from "./location.actions";
 
 export const initialstate: LocationState={
-    city:'Chittoor'
+    city:localStorage.getItem('location')||""
 }
 
 export const locationreducer=createReducer(
