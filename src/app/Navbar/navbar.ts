@@ -17,7 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class Navbar {
 
-  constructor(private store: Store<{ location: LocationState }>, private router: Router,private route:ActivatedRoute) { }
+  constructor(private store: Store<{ location: LocationState }>, private router: Router, private route: ActivatedRoute) { }
 
   location$!: Observable<LocationState>;
 
@@ -78,40 +78,48 @@ export class Navbar {
   moviesbylocation: any[] = []
   ngOnInit(): void {
     this.location$ = this.store.pipe(select('location'));
+
+    this.route.paramMap.subscribe(params => {
+      const locationfromurl = params.get('location')?.toLowerCase();
+      if (locationfromurl) {
+        this.location$.pipe(take(1)).subscribe(storelocation => {
+          if (storelocation.city.toLowerCase() !== locationfromurl) {
+            this.setCity(locationfromurl);
+          }
+        })
+      }
+    })
+
     this.location$.subscribe(val => {
       if (val.city === "") {
         this.showLocationModal = true;
       }
-      else if(val.city !== this.route.snapshot.paramMap.get('location')){
-        this.setCity(this.route.snapshot.paramMap.get('location')?.toLowerCase() || val.city);
-      }
-    }) 
-    this.navbarservice.getlocations().subscribe({
-      next: (res) => {
-        this.cities = res;
-      }
     })
-    this.navbarservice.getmoviesbylanguages().subscribe({
-      next: (res) => {
-        this.moviestab = res;
-        console.log(this.moviestab)
-      }
-    })
+
+
+    this.navbarservice.getlocations().subscribe({ next: (res) => { this.cities = res; } })
+    this.navbarservice.getmoviesbylanguages().subscribe({ next: (res) => { this.moviestab = res; console.log(this.moviestab) } })
     this.navbarservice.gettheatresbylocations().subscribe({
-      next: (res) => {
-        this.moviesbylocation = res;
-        console.log(this.moviesbylocation);
-      }
+      next: (res) => { this.moviesbylocation = res; console.log(this.moviesbylocation); }
     })
   }
 
+
   navigatelocation(location: string) {
-    const segments = this.router.url.split('/');
-    const cityIndex = segments.findIndex(seg => seg.toLowerCase() === 'explore' || seg.toLowerCase()==='movie') + 2;
+    
+    location=location.toLowerCase();
+    const routemodify = this.router.url.replace(/-/g, ' ');
+
+
+    const segments = routemodify.split('/');
+    const cityIndex = segments.findIndex(seg => seg.toLowerCase() === 'home' || seg.toLowerCase() === 'movie' || seg.toLowerCase() === 'movies') + 1;
     if (cityIndex > 0 && segments.length > cityIndex) {
+      if (segments[cityIndex].toLowerCase() === location.toLowerCase()) {
+        return; // 🔒 prevent navigation loop
+      }
       segments[cityIndex] = location; // update the city part
     }
     const newUrl = segments.join('/');
-    this.router.navigateByUrl(newUrl);
+    this.router.navigateByUrl(newUrl.replace(/\s/g, '-'));
   }
 }

@@ -8,8 +8,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-moviepage',
   imports: [Navbar, CommonModule],
   standalone: true,
-  templateUrl: './moviepage.component.html',
-  styleUrl: './moviepage.component.css'
+  templateUrl: './moviepage.html',
+  styleUrl: './moviepage.css'
 })
 export class MoviepageComponent {
   constructor(private http: HttpClient, private route: ActivatedRoute) { }

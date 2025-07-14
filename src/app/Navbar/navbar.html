@@ -220,8 +220,10 @@
         <div *ngIf="showAllCities">
             <p class="text-center text-red-500 mt-[1rem] font-bold">All cities</p>
             <div class='flex flex-wrap h-[8rem] overflow-auto custom-scrollbar mt-[1rem] p-[1rem]'>
-                <h4 class='w-[10rem] h-[1.5rem]' *ngFor="let location of cities">
-                    <h1 (click)="setCity(location.location);ToggleLocation();navigatelocation(location.location)">{{location.location}}</h1>
+                <h4 class='w-[10rem] h-[1.5rem]' *ngFor="let location of cities"> 
+                    <span (click)="setCity(location.location);ToggleLocation();navigatelocation(location.location)">{{location.location}}</span>
+                     <!-- <span (click)="setCity('Chittoor');ToggleLocation();navigatelocation('Chittoor')">Chittoor</span>
+                    <span (click)="setCity('tirupathi');ToggleLocation();navigatelocation('tirupathi')">tirupathi</span> -->
                 </h4>
             </div>
         </div>

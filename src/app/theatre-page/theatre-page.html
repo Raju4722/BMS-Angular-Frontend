@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<div class="w-full h-[7rem] p-[0.6rem] pl-[3rem] flex flex-col justify-evenly">
+
+    <h1 class="text-3xl font-bold">{{movie.title}} - lan</h1>
+    <div class="flex">
+        <h1
+            class="text-sm border-black border-[1.4px] rounded-l-[1rem] rounded-r-[1rem] p-[0.1rem] mr-[1rem] pl-[0.3rem] pr-[0.3rem]">
+            {{movie.censor}}</h1>
+        <h1
+            class="text-sm border-black border-[1.4px] rounded-l-[1rem] rounded-r-[1rem] p-[0.1rem] mr-[0.5rem] pl-[0.3rem] pr-[0.3rem] hover:underline cursor-pointer" *ngFor="let genre of movie.moviegenre">
+            {{genre.genre}}</h1>
+
+    </div>
+</div>
+<div class="w-full h-[5.5rem] pl-[3rem] boder-t-[#F5F5F5] border">
+    <div class="h-full w-[24.5rem] flex items-center">
+        <div *ngFor="let datte of next7days">
+            <div class='h-[5rem] w-[3.5rem]  rounded-xl text-center flex flex-col font-bold'
+                [style.background-color]="color(datte)" (click)="changingthedate(datte)">
+                <p> {{datte | date:'EEE'}}</p>
+                <p class="text-2xl"> {{datte | date:'d'}}</p>
+                <p> {{datte | date:'MMM'}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="w-full   h-[2.5rem]">{{location}}</div>
+<div class="h-full w-full pl-[3rem] pr-[3rem] pt-[1.4rem] pb-[1.4rem] bg-[#F5F5F5]" *ngIf="objectkeys(shows).length>0">
+    <div class=" w-full h-auto p-[1rem] bg-white border border-b-[#F5F5F5]">
+        <div class=" w-full h-full flex " *ngFor="let theatrename of objectkeys(shows)">
+            <div class="font-bold w-[28rem] text-xl break-words">{{theatrename}}</div>
+            <div>
+                <div class="flex flex-wrap gap-[1rem]" >
+                    <span class="h-[2.5rem] w-[7rem] border border-green-500 flex justify-center items-center border-l-[0.4rem]" *ngFor="let show of shows[theatrename]">{{show.time}}</span>
+                </div>
+                <p class="text-xs mt-[0.5rem]">Cancellation Available</p>
+            </div>
+
+        </div>
+    </div>
+</div>

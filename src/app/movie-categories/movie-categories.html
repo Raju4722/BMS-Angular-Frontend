@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+<div class="p-[1.3rem]">
+    <p class="font-bold text-xl mb-[2rem]">{{uniqtype}} movies in {{location}}</p>
+    <!-- {/* <p class="font-bold text-xl">{console.log(uniqmovies)}</p> */} -->
+    <div class="flex flex-wrap  gap-[2rem]">
+        <div class=" w-[13rem] h-auto gap-[0.5rem] break-words flex flex-col " *ngFor="let movieshow of uniqmovieshows">
+            <img src={{movieshow.movie.poster}} alt="jiokl" class="h-[22rem] w-full bg-yellow-500 rounded-xl" />
+            <p class="font-bold text-2xl">{{movieshow.movie.title}}</p>
+            <div class="flex" >
+                <p class="text-sm"  *ngFor="let genre of movieshow.movie.moviegenre; let i=index" >{{genre.genre}} <span *ngIf="i<movieshow.movie.moviegenre.length-1">,</span> </p>
+            </div>
+        </div>
+        <p class="font-bold text-xl">No movies Matched In your Locality.</p>
+    </div>
+</div>
